@@ -1,12 +1,16 @@
 # frozen_string_literal: true
 
 require "bundler/gem_tasks"
-require "rspec/core/rake_task"
-
-RSpec::Core::RakeTask.new(:spec)
 
 require "rubocop/rake_task"
 
 RuboCop::RakeTask.new
 
-task default: %i[spec rubocop]
+task :build do
+  cd "ext/" do
+    ruby "extconf.rb"
+    sh "make"
+  end
+end
+
+task default: %i[rubocop build]
