@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.email = ["richard@viaeurope.com"]
 
   spec.summary = "True monotonic time for Ruby"
-  spec.description = "Get nano second monotonic time that is not affected by suspense."
+  spec.description = "Get nanosecond precision monotonic time that is not affected by system suspense."
   spec.homepage = "https://github.com/richardmarbach/ruby-monotonic"
   spec.license = "MIT"
   spec.required_ruby_version = ">= 3.0.0"
@@ -30,9 +30,6 @@ Gem::Specification.new do |spec|
   spec.bindir = "exe"
   spec.executables = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
   spec.require_paths = %w[lib]
-
-  # Uncomment to register a new dependency of your gem
-  # spec.add_dependency "example-gem", "~> 1.0"
 
   # For more information and examples about making a new gem, check out our
   # guide at: https://bundler.io/guides/creating_gem.html

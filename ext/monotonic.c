@@ -12,7 +12,7 @@
 
 #define S_IN_NS 1000000000LL
 
-long long monotonic_get_current_time() {
+long long monotonic_get_monotonic_time() {
 #if defined(__APPLE__)
   return mach_continuous_time();
 #elif defined(_WIN32)
@@ -28,11 +28,8 @@ long long monotonic_get_current_time() {
     return qpc.QuadPart * (S_IN_NS / COMMON_QPF);
   }
 
-  long long quotient = qpc.QuadPart / qpf.QuadPart;
-  long long remainder = qpc.QuadPart % qpf.QuadPart;
-  long long nanoseconds = quotient * S_IN_NS;
-  nanoseconds += (remainder * S_IN_NS) / qpf.QuadPart;
-
+  long long nanoseconds = qpc.QuadPart * S_IN_NS;
+  nanoseconds /= qpf.QuadPart;
   return nanoseconds;
 #else
   struct timespec ts;
@@ -41,12 +38,12 @@ long long monotonic_get_current_time() {
 #endif
 }
 
-VALUE monotonic_get_current_time_ext() {
-  return LL2NUM(monotonic_get_current_time());
+VALUE monotonic_get_monotonic_time_ext() {
+  return LL2NUM(monotonic_get_monotonic_time());
 }
 
 void Init_monotonic() {
   VALUE mod = rb_define_module("Monotonic");
-  rb_define_singleton_method(mod, "current_time",
-                             monotonic_get_current_time_ext, 0);
+  rb_define_singleton_method(mod, "monotonic_time",
+                             monotonic_get_monotonic_time_ext, 0);
 }
