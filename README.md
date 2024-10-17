@@ -31,10 +31,10 @@ end
 # Total running time 15 minutes
 ```
 
-Currently, there's no good cross-platform monotonic time implemented. 
-On Linux it's possible to use `CLOCK_BOOTTIME`.
-However, Ruby hasn't implemented the MacOS equivalent of `mach_continous_time`.
+Currently, there's no good option for getting a suspense-aware cross-platform monotonic timestamp. 
+On Linux/FreeBSD it's possible to use `CLOCK_BOOTTIME`.
 
+However, Ruby hasn't implemented the MacOS equivalent of `mach_continous_time`.
 Windows also has a poor story regarding high precision timers, with the only option being `QueryPerformanceCounter` for a high resolution time stamp.
 
 ## Installation
