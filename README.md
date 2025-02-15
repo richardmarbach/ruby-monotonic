@@ -40,7 +40,7 @@ Windows also has a poor story regarding high precision timers, with the only opt
 Using a suspense aware timestamp will cause the `Timeout` to cancel instantly once the suspended process is resumed by the OS:
 
 ```ruby
-# Don't actually do this
+# Don't actually patch Timeout like this
 def get_time(*args)
   Monotonic.monotonic_time
 end
