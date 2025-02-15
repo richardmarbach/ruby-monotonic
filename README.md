@@ -48,7 +48,7 @@ Timeout::GET_TIME = method(:get_time)
 
 Timeout.timeout(5) do
     # Do Work
-    # System is supsended for 15 minutes
+    # System is suspended for 15 minutes
     # Abort on resume
 end
 ```
