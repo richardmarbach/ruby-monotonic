@@ -37,6 +37,16 @@ On Linux/FreeBSD it's possible to use `CLOCK_BOOTTIME`.
 However, Ruby hasn't implemented the MacOS equivalent of `mach_continous_time`.
 Windows also has a poor story regarding high precision timers, with the only option being `QueryPerformanceCounter` for a high resolution time stamp.
 
+Using a suspense aware timestamp will cause the `Timeout` to cancel instantly once the suspended process is resumed by the OS:
+
+```ruby
+Timeout.timeout(5) do
+    # Do Work
+    # System is supsended for 15 minutes
+    # Abort on resume
+end
+```
+
 ## Installation
 
 Install the gem and add to the application's Gemfile by executing:
